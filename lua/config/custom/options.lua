@@ -1,0 +1,19 @@
+local opt = vim.opt
+
+opt.number = true
+opt.relativenumber = true
+opt.inccommand = "split"
+opt.splitbelow = true
+opt.splitright = true
+opt.smartcase = true
+opt.ignorecase = true
+opt.signcolumn = "yes"
+opt.swapfile = false
+opt.wrap = true
+opt.linebreak = true
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
+opt.more = false
+opt.mouse = ""
+opt.clipboard = "unnamedplus"
