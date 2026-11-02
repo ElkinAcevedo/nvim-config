@@ -83,7 +83,7 @@ mv ~/.config/nvim ~/.config/nvim.bak
 Clona el repositorio:
 
 ```bash
-git clone https://github.com/TU_USUARIO/TU_REPO.git ~/.config/nvim
+git clone https://github.com/ElkinAcevedo/nvim-config.git ~/.config/nvim
 ```
 
 ## Requisitos
