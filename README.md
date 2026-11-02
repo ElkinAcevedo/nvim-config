@@ -1,6 +1,7 @@
 # Neovim Config
 
-Configuración de Neovim. 
+Configuración de Neovim.
+
 ## Plugins
 
 | Plugin | Archivo | Función |
@@ -11,6 +12,7 @@ Configuración de Neovim.
 | lualine.nvim | `lualine.lua` | Barra de estado |
 | telescope.nvim | `telescope.lua` | Búsqueda de archivos, texto y más |
 | nvim-treesitter | `treesitter.lua` | Resaltado de sintaxis y análisis de código |
+| vim-dadbod-ui | `dadbod.lua` | Cliente de bases de datos (con vim-dadbod y vim-dadbod-completion) |
 
 ## Servidores LSP
 
@@ -20,6 +22,22 @@ Configuración de Neovim.
 | C / C++ | clangd | `clangd.lua` |
 | Lua | lua-language-server | `lua_ls.lua` |
 | Python | pyright | `pyright.lua` |
+
+## Base de datos (dadbod)
+
+Plugins usados: `vim-dadbod` (motor), `vim-dadbod-ui` (interfaz) y `vim-dadbod-completion` (autocompletado, integrado en `blink.lua`).
+
+### Configurar una conexión
+
+Las conexiones se definen en `vim.g.dbs` dentro de `lua/config/plugins/dadbod.lua`:
+
+```lua
+vim.g.dbs = {
+  alias = "postgresql://usuario:contraseña@localhost:5432/base",
+}
+```
+
+Formato de la URL: `esquema://usuario:contraseña@host:puerto/base`.
 
 ## Estructura
 
@@ -47,6 +65,7 @@ nvim/
         └── plugins/
             ├── blink.lua
             ├── colorscheme.lua
+            ├── dadbod.lua
             ├── lspconfig.lua
             ├── lualine.lua
             ├── telescope.lua
@@ -55,7 +74,7 @@ nvim/
 
 ## Instalación
 
-Copia de seguridad 
+Copia de seguridad:
 
 ```bash
 mv ~/.config/nvim ~/.config/nvim.bak
@@ -66,9 +85,21 @@ Clona el repositorio:
 ```bash
 git clone https://github.com/TU_USUARIO/TU_REPO.git ~/.config/nvim
 ```
+
 ## Requisitos
 
 - Neovim
 - Git
 - Un compilador de C (para los parsers de treesitter)
 - Servidores LSP instalados en el sistema:
+
+```bash
+npm install -g bash-language-server pyright
+# clangd y lua-language-server desde el gestor de paquetes de tu distribución
+```
+
+- Cliente de la base de datos:
+
+```bash
+sudo pacman -S postgresql
+```
