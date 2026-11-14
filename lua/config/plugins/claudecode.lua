@@ -1,6 +1,10 @@
 return {
   "coder/claudecode.nvim",
   opts = {
+    -- Claude Code usa por defecto "pantalla alternativa" (fullscreen), que no deja
+    -- historial en el buffer de nvim y por eso no se podía hacer scroll.
+    -- Con esto escribe en línea y el scroll normal de nvim funciona.
+    env = { CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN = "1" },
     terminal = {
       provider = "native", -- sin snacks.nvim, usa :terminal
       split_side = "right",
