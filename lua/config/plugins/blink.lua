@@ -3,6 +3,7 @@ return {
     "saghen/blink.cmp",
     version = "1.*",
     opts = {
+      keymap = { preset = "super-tab" },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
         per_filetype = {
