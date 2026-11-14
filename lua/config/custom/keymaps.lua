@@ -32,3 +32,18 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+
+-- Navegación entre ventanas con Alt+h/j/k/l (funciona también desde terminales, p.ej. Claude Code)
+for _, dir in ipairs({ "h", "j", "k", "l" }) do
+  vim.keymap.set("t", "<A-" .. dir .. ">", "<C-\\><C-n><C-w>" .. dir, { desc = "Ir a ventana " .. dir })
+  vim.keymap.set("n", "<A-" .. dir .. ">", "<C-w>" .. dir, { desc = "Ir a ventana " .. dir })
+end
+
+-- Salir del modo terminal a modo normal (para hacer scroll, copiar, usar <leader>...)
+vim.keymap.set("t", "<A-n>", "<C-\\><C-n>", { desc = "Terminal: modo normal" })
+
+-- Al volver a una ventana de terminal, entrar directo a escribir
+vim.api.nvim_create_autocmd({ "BufEnter", "WinEnter" }, {
+  pattern = "term://*",
+  callback = function() vim.cmd("startinsert") end,
+})
