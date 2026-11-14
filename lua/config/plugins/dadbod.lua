@@ -8,8 +8,8 @@ return {
   init = function()
     vim.g.db_ui_use_nerd_fonts = 1
     vim.g.db_ui_save_location = vim.fn.stdpath("data") .. "/db_ui"
-    vim.g.dbs = {
-      prueba = "postgresql://elkin:***@localhost:5432/prueba",
-    }
+    -- Credenciales en lua/config/secrets.lua (ignorado por git)
+    local ok, secrets = pcall(require, "config.secrets")
+    vim.g.dbs = ok and secrets.dbs or {}
   end,
 }
